@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class to build an array of Tokens from an input file
@@ -37,11 +38,14 @@ public class Lexer {
     */
     private void getInput(String fileName)  {
         try {
-            Path filePath = Paths.get("test.txt");
+            Path filePath = Paths.get(fileName);
             byte[] allBytes = Files.readAllBytes(filePath);
             buffer = new String (allBytes);
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println ("You did not enter a valid file name in the run arguments.");
+            System.out.println ("Please enter a string to be parsed:");
+            Scanner scanner = new Scanner(System.in);
+            buffer=scanner.nextLine();
         }
 
 
@@ -50,7 +54,14 @@ public class Lexer {
 
 
     public static void main(String[] args) {
-        Lexer lexer = new Lexer("test.txt");
+        String fileName="";
+        if (args.length==0) {
+            System.out.println("You must specify a file name");
+        } else {
+
+            fileName=args[0];
+        }
+        Lexer lexer = new Lexer(fileName);
 
         System.out.println(lexer.buffer);
 
