@@ -64,6 +64,9 @@ public class Lexer {
         Lexer lexer = new Lexer(fileName);
 
         System.out.println(lexer.buffer);
+        for (int i = 0; i < 0; i++) {
+            
+        }
 
 
     }
